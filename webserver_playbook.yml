@@ -1,22 +1,25 @@
 ---
-- hosts: all
-  become: yes
+- name: Update web servers
+  hosts: webservers
+  remote_user: root
 
-- name: Update APT
-      ansible.builtin.apt:
-        update_cache: true
+  tasks:
+  - name: Ensure apache is at the latest version
+    ansible.builtin.package:
+      name:
+        - apache2
+        - python-apt
+      state: latest
 
-- name: Install the latest version of Apache2 and Python-apt
-  ansible.builtin.package:
-    name:
-      - apache2
-      - python-apt
-    state: latest
+  - name: Create a symbolic link
+    ansible.builtin.file:
+      src: /etc/apache2/mods-available/headers.load
+      dest: /etc/apache2/mods-enabled/headers.load
+      owner: foo
+      group: foo
+      state: link
 
-- name: Create a symbolic link
-  ansible.builtin.file:
-    src: /file/to/link/to
-    dest: /path/to/symlink
-    owner: foo
-    group: foo
-    state: link
+  - name: Restart service httpd, in all cases
+    ansible.builtin.service:
+      name: httpd
+      state: restarted

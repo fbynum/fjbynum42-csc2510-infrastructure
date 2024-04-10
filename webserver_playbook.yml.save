@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+
+- name: Update APT
+      ansible.builtin.apt:
+        update_cache: true
+
+- name: Install the latest version of Apache2 and Python-apt
+  ansible.builtin.package:
+    name:
+      - apache2
+      - python-apt
+    state: latest
+
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: /etc/apache2/mods-available/headers.load /path/to/symlink
+    dest: /path/to/symlink
+    owner: foo
+    group: foo
+    state: link
+
+- name: Restart service httpd, in all cases
+  ansible.builtin.service:
+    name: httpd
+    state: restarted
