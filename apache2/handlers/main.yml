@@ -1,0 +1,12 @@
+---
+# handlers file for apache2
+ 
+- name: Handlers Thing
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Restart service httpd, in all cases
+    ansible.builtin.service:
+      name: apache2
+      state: restarted

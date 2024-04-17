@@ -1,0 +1,16 @@
+---
+# defaults file for apache2
+
+- name Copy things
+  hosts: all
+  tasksL
+
+  - name: Copy Config
+    ansible.builtin.template:
+      src: files/config/apache.conf
+      dest: '/etc/apache2/apache2.conf'
+
+  - name: Copy Index
+    ansible.builtin.template:
+      src: files/config/index.html
+      dest: '/var/www/html/index.html'
