@@ -1,20 +1,16 @@
 ---
 # tasks file for apache2
-- name: Update web servers
-  hosts: webservers
-  become: yes
-
-  tasks:
   - name: Ensure apache is at the latest version
     ansible.builtin.package:
       name:
         - apache2
-        - python-apt
+        - python-apt     
       state: latest
+      
 
   - name: Copy file with owner and permissions
     ansible.builtin.copy:
-      src: files/config/apache.conf
+      src: "{{ config_path }}"
       dest: /etc/apache2/apache2.conf
       owner: root
       group: root
@@ -22,7 +18,7 @@
 
   - name: Copy file with owner and permissions
     ansible.builtin.copy:
-      src: files/config/index.html
+      src: "{{ index_path }}"
       dest: /var/www/html/index.html
       owner: root
       group: root

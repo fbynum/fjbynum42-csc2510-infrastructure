@@ -1,7 +1,5 @@
 ---
 # tasks file for update_apt
-- name: Ensure apache is at the latest version
-    ansible.builtin.package:
-      name:
-        - python-apt
-      state: latest
+- name: Update APT
+  apt:
+    update_cache: yes
