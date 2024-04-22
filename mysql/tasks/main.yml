@@ -25,19 +25,37 @@
     enabled: true
 
 - name: Copy update script to the server
-# TODO 
+# TODO
+  ansible.builtin.copy:
+    src:"{{ script_path }}"
+    dest: /tmp/
+    owner: root
+    group: root
+    mode: '0644' 
 
 - name: Execute the script
 # TODO
+  ansible.builtin.shell: user_script.sh >> somelog.txt
 
 - name: Output result from script
 # TODO
+  ansible.builtin.debug:
+    var: result
+    verbosity: 2
 
 - name: Clean up - remove the script from the remote server
-# TODO
+  ansible.builtin.file:
+    path: /tmp/user_script.sh
+    state: absent
+  
 
 - name: Create MySQL database
 # TODO
+  community.mysql.mysql_db:
+    name:
+      - foo
+      - bar
+    state: present
 
 - name: Create MySQL user
   mysql_user:
@@ -51,6 +69,12 @@
 
 - name: Copy SQL file to remote host
 # TODO - this should only be run if mysql_import_data is true
+  ansible.builtin.copy:
+    src: "{{ sql_file }}"
+    dest: user/files/
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Import SQL data
 # TODO

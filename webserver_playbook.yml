@@ -3,5 +3,5 @@
   roles:
     - update_apt
     - apache2
+    - mysql
   become: yes
-
