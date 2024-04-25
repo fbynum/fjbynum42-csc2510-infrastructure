@@ -6,4 +6,15 @@ mysql_password: "secure_password"
 mysql_database: "devops"
 mysql_import_data: false
 mysql_sql_file: "example_db.sql"
-script_path: "user_script.sh"
+  GNU nano 4.8         user_script.sh                    
+#!/bin/bash
+
+if $1 > 0; then
+  mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' >
+  mysql -u root -e "FLUSH PRIVILEGES;"
+  echo "success"
+else
+
+  echo "error"
+
+fi
