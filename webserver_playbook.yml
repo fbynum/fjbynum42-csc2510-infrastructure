@@ -5,3 +5,6 @@
     - apache2
     - mysql
   become: yes
+
+  vars:
+    mysql_import_data: yes
