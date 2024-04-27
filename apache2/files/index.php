@@ -1,6 +1,6 @@
 <?php
-$servername = ""; // internal IP of db server
-$username = ""; // your GCP username.  Remember, convert periods to _
+$servername = "10.142.0.5"; // internal IP of db server
+$username = "fbynum67"; // your GCP username.  Remember, convert periods to _
 $password = "secure_password";
 $database = "devops";
 
