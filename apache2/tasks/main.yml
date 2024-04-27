@@ -1,0 +1,45 @@
+---
+# tasks file for apache2
+  - name: Ensure apache is at the latest version
+    ansible.builtin.package:
+      name:
+        - apache2
+        - python-apt
+        - php 
+        - libapache2-mod-php
+        - php-mysql    
+      state: latest
+    notify: apache2  
+      
+
+  - name: Copy file with owner and permissions
+    ansible.builtin.copy:
+      src: "{{ config_path }}"
+      dest: /etc/apache2/apache2.conf
+      owner: root
+      group: root
+      mode: '0777'
+
+  - name: Copy file with owner and permissions
+    ansible.builtin.copy:
+      src: "{{ index_path }}"
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: '0777'
+
+  - name: Copy file with owner and permissions
+    ansible.builtin.copy:
+      src: "{{ indexp_path }}"
+      dest: /var/www/html/index.php
+      owner: root
+      group: root
+      mode: '0777'
+
+  - name: Create a symbolic link
+    ansible.builtin.file:
+      src: /etc/apache2/mods-available/headers.load
+      dest: /etc/apache2/mods-enabled/headers.load
+      state: link
+      force: yes
+

@@ -1,0 +1,20 @@
+---
+# defaults file for mysql
+mysql_root_password: "secure_password"
+mysql_user: "fbynum67" # this is your GCP username.  Remember, no periods!
+mysql_password: "secure_password"
+mysql_database: "devops"
+mysql_import_data: false
+mysql_sql_file: "example_db.sql"
+  GNU nano 4.8         user_script.sh                    
+#!/bin/bash
+
+if $1 > 0; then
+  mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' >
+  mysql -u root -e "FLUSH PRIVILEGES;"
+  echo "success"
+else
+
+  echo "error"
+
+fi
