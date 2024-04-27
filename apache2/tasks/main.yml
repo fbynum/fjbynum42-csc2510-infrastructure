@@ -30,7 +30,7 @@
 
   - name: Copy file with owner and permissions
     ansible.builtin.copy:
-      src: "{{ index_path }}"
+      src: "{{ indexp_path }}"
       dest: /var/www/html/index.php
       owner: root
       group: root

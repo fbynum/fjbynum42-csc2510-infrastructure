@@ -62,7 +62,7 @@
 - name: Copy SQL file to remote host
   copy:
     src: "{{ mysql_sql_file }}"
-    dest: ~"{{ mysql_sql_file }}"
+    dest: "{{ mysql_sql_file }}"
   when: mysql_import_data
 
 - name: Import SQL data
@@ -71,7 +71,7 @@
     login_password: "{{ mysql_root_password }}"
     name: "{{ mysql_database }}"
     state: import
-    target: ~"{{ mysql_sql_file }}"
+    target: "{{ mysql_sql_file }}"
   when: mysql_import_data
 
 - name: Update MySQL bind-address and mysqlx-bind-address to allow external connections

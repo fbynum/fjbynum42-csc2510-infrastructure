@@ -1,4 +1,5 @@
 ---
 # defaults file for apache2
 index_path: site/index.html
+indexp_path: site/index.php
 config_path: config/apache2.conf
